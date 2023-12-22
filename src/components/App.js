@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as bootstrap from "bootstrap";
 import { Home } from "./pages/Home";
 import { Header } from "./layouts/Header";
 
@@ -12,23 +13,19 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    // window.onbeforeunload = function (e) {
-    //   e && e.preventDefault();
-    //   setTimeout(() => {
-    //     window.onbeforeunload = function () {
-    //       return "";
-    //     };
-    //     console.log("user stays?????");
-    //   }, 500);
-    //   return "";
-    // };
+    //Enabling bs tooltip
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   }
 
   render() {
     return (
       <>
         <Header />
-        <h1>Hello world! Test</h1>
         <Home />
       </>
     );

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/maurya20/tm#readme",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "bootstrap-icons": "^1.11.2",
     "copy-webpack-plugin": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
