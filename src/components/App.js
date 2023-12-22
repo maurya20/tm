@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Home } from "./pages/Home";
+import { Header } from "./layouts/Header";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -25,10 +26,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
+        <Header />
         <h1>Hello world! Test</h1>
         <Home />
-      </div>
+      </>
     );
   }
 }

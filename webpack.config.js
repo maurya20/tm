@@ -34,31 +34,37 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader",
           },
           {
-            loader: 'css-loader'
+            loader: "css-loader",
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: () => [
-                  require('autoprefixer')
-                ]
-              }
-            }
+                plugins: () => [require("autoprefixer")],
+              },
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
-      }
+            loader: "sass-loader",
+          },
+        ],
+      },
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve("url-loader"),
+        options: {
+          limit: 10000,
+          name: "assets/[name].[hash:8].[ext]",
+        },
+      },
     ],
   },
   devServer: {
     //compress: true,
-    static: path.resolve(__dirname, 'dist'),
+    static: path.resolve(__dirname, "dist"),
     host: "dev.mysite.com",
     port: 1995,
   },
