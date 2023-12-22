@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
-import {Loader} from "./components/reusables/Loader"
+// Import our custom CSS
+import "./scss/styles.scss";
 
+// Import all of Bootstrap's JS
+import * as bootstrap from "bootstrap";
+import App from "./components/App";
+import { Loader } from "./components/reusables/Loader";
 
 function appRenderer() {
   if (window.configLoded) {
@@ -17,7 +21,7 @@ const intervalId = setInterval(() => {
   if (window.configLoded) {
     clearInterval(intervalId);
     const loaderEl = document.getElementById("loading");
-    if(loaderEl){
+    if (loaderEl) {
       loaderEl.remove();
     }
   }
