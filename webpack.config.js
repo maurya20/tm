@@ -68,7 +68,10 @@ module.exports = {
   },
   devServer: {
     //compress: true,
-    static: path.resolve(__dirname, "dist"),
+    historyApiFallback: true,
+    // contentBase: "./",
+    hot: true,
+    static: "./",
     host: "dev.mysite.com",
     port: 1995,
   },
