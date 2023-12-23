@@ -20,6 +20,12 @@ class App extends Component {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+    const res = appObj.makeXhrCall(
+      "https://dog.ceo/api/breeds/image/random",
+      function (err, res) {
+        console.log("res:::::::", res);
+      }
+    );
   }
 
   render() {
