@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Header } from "./layouts/Header";
 import { CreateTask } from "./pages/CreateTask";
+import { OutletContainer } from "./layouts/OutletContainer";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -24,12 +25,12 @@ class App extends Component {
         trigger: "hover",
       });
     });
-    // const res = appObj.makeXhrCall(
-    //   "https://dog.ceo/api/breeds/image/random",
-    //   function (err, res) {
-    //     console.log("res:::::::", res);
-    //   }
-    // );
+    const res = appObj.makeXhrCall(
+      "https://dog.ceo/api/breeds/image/random",
+      function (err, res) {
+        console.log("res:::::::", res);
+      }
+    );
   }
 
   render() {

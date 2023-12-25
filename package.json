@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/maurya20/tm#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^40.2.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap-icons": "^1.11.2",
     "copy-webpack-plugin": "^11.0.0",
