@@ -7,11 +7,31 @@ export const CreateTask = (props) => {
   };
   return (
     <div className="editor">
-      <h2>Using CKEditor&nbsp;5 build in React</h2>
-      <TextEditor
-        defaultVal={"<p>Hello from CKEditor&nbsp;5!</p>"}
-        emitVal={emitEditorVal}
-      />
+      <form className="form-horizontal">
+        <div className="mb-3">
+          <label htmlFor="taskTitle" className="htmlFm-label">
+            Title
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="taskTitle"
+            aria-describedby="titleHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="taskDescription" className="form-label">
+            Description
+          </label>
+          <TextEditor
+            defaultVal={"<p>Hello from CKEditor&nbsp;5!</p>"}
+            emitVal={emitEditorVal}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
