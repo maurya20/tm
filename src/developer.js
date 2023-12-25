@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 // Import our custom CSS
 import "./scss/styles.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -7,10 +8,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 // Import all of Bootstrap's JS
 import App from "./components/App";
 import { Loader } from "./components/reusables/Loader";
+import { store } from "./store";
 
 function appRenderer() {
   if (window.configLoded) {
-    ReactDOM.render(<App />, document.getElementById("root"));
+    ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.getElementById("root")
+    );
   } else {
     ReactDOM.render(<Loader />, document.getElementById("loading"));
   }
