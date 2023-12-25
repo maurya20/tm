@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextEditor } from "../reusables/TextEditor";
-
+import { useDispatch } from "react-redux";
+import { createTask } from "../../store/actions/taskActions";
 export const CreateTask = (props) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
+
   const emitEditorVal = (val) => {
-    console.log("emitVal;", val);
+    setDescription(val);
+  };
+  const createNewTask = (e) => {
+    e.preventDefault();
+    let newTask = {
+      title: title,
+      description: description,
+    };
+    console.log("taskObj???", newTask);
+    dispatch(createTask(newTask));
   };
   return (
     <div className="editor">
@@ -17,6 +31,7 @@ export const CreateTask = (props) => {
             className="form-control"
             id="taskTitle"
             aria-describedby="titleHelp"
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -28,7 +43,11 @@ export const CreateTask = (props) => {
             emitVal={emitEditorVal}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={createNewTask}
+        >
           Submit
         </button>
       </form>
