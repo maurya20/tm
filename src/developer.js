@@ -9,6 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./components/App";
 import { Loader } from "./components/reusables/Loader";
 import { store } from "./store";
+import { TmDb } from "./localDb/tmdb";
 
 function appRenderer() {
   if (window.configLoded) {
@@ -33,6 +34,7 @@ const intervalId = setInterval(() => {
     }
   }
 }, 1000);
-store.subscribe((newState) => {
+store.subscribe(async (newState) => {
   console.log("storeeeListener", newState, store.getState());
+  await TmDb.updateInToDb(store.getState());
 });

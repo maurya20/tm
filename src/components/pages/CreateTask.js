@@ -3,6 +3,8 @@ import { TextEditor } from "../reusables/TextEditor";
 import { useDispatch } from "react-redux";
 import { createTask } from "../../store/actions/taskActions";
 import { useLocalDb } from "../../hooks/useLocalDb";
+import { getNextTaskId } from "../../helper/helper";
+import { firstTaskId } from "../../constants";
 export const CreateTask = (props) => {
   const { getItem, setItem } = useLocalDb({ fallbackValue: [] });
   const [title, setTitle] = useState("");
@@ -17,24 +19,11 @@ export const CreateTask = (props) => {
     let newTask = {
       title: title,
       description: description,
+      id: getNextTaskId(firstTaskId),
     };
     console.log("taskObj???", newTask);
     dispatch(createTask(newTask));
-    setItem(
-      "tm",
-      { tm: { tasks: [newTask] }, logo: "bhdcbhbch" },
-      getItem
-    ).then((data) => {
-      console.log("dat>>>>>", data);
-    });
   };
-
-  useEffect(() => {
-    getItem("tm", (items) => {
-      // console.log("localeDb::::", items);
-    });
-  }, [getItem]);
-
   return (
     <div className="editor">
       <form className="form-horizontal">

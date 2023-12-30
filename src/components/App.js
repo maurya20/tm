@@ -33,7 +33,6 @@ class App extends Component {
     //     console.log("res:::::::", res);
     //   }
     // );
-    console.log(">>>>>>>", getNextTaskId(firstTaskId));
   }
 
   render() {
