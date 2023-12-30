@@ -6,7 +6,9 @@ export const taskReducer = (state = defaultTmObj, action) => {
   switch (type) {
     case CREATE_TASK:
       return {
+        ...state,
         blTasks: [...state.blTasks, payload],
+        lastTaskId: payload.id,
       };
     case GET_TASKS:
       return { ...state, ...payload };

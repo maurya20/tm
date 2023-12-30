@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { TextEditor } from "../reusables/TextEditor";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../store/actions/taskActions";
 import { getNextTaskId } from "../../helper/helper";
-import { firstTaskId } from "../../constants";
 
 export const CreateTask = (props) => {
   const [title, setTitle] = useState("");
@@ -12,6 +11,7 @@ export const CreateTask = (props) => {
   const [defaultEditorVal, setEditorDefautVal] = useState(
     "<p>Enter task description here...</p>"
   );
+  const tm = useSelector((state) => state.tm);
   const emitEditorVal = (val) => {
     setDescription(val);
   };
@@ -20,9 +20,8 @@ export const CreateTask = (props) => {
     let newTask = {
       title: title,
       description: description,
-      id: getNextTaskId(firstTaskId),
+      id: getNextTaskId(tm?.lastTaskId),
     };
-    console.log("taskObj???", newTask);
     dispatch(createTask(newTask));
   };
   return (
