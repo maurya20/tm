@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 // Import our custom CSS
 import "./scss/styles.scss";
@@ -14,14 +14,15 @@ import { getTasks } from "./store/actions/taskActions";
 
 function appRenderer() {
   if (window.configLoded) {
-    ReactDOM.render(
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(
       <Provider store={store}>
         <App />
-      </Provider>,
-      document.getElementById("root")
+      </Provider>
     );
   } else {
-    ReactDOM.render(<Loader />, document.getElementById("loading"));
+    const loading = ReactDOM.createRoot(document.getElementById("loading"));
+    loading.render(<Loader />);
   }
 }
 
