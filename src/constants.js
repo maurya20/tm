@@ -3,3 +3,5 @@ export const getMyDate = () => {
 };
 
 export const firstTaskId = "TM-10000";
+export const backlog = "bklg";
+export const toDo = "todo";

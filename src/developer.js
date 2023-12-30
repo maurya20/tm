@@ -33,3 +33,6 @@ const intervalId = setInterval(() => {
     }
   }
 }, 1000);
+store.subscribe((newState) => {
+  console.log("storeeeListener", newState, store.getState());
+});
