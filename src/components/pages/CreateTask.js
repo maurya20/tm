@@ -3,6 +3,7 @@ import { TextEditor } from "../reusables/TextEditor";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../store/actions/taskActions";
 import { getNextTaskId } from "../../helper/helper";
+import { Loader } from "../reusables/Loader";
 
 export const CreateTask = (props) => {
   const [title, setTitle] = useState("");
@@ -57,6 +58,7 @@ export const CreateTask = (props) => {
           Submit
         </button>
       </form>
+      <Loader></Loader>
     </div>
   );
 };
