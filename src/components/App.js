@@ -27,6 +27,7 @@ class App extends Component {
         trigger: "hover",
       });
     });
+
     // const res = appObj.makeXhrCall(
     //   "https://dog.ceo/api/breeds/image/random",
     //   function (err, res) {

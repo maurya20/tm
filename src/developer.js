@@ -10,6 +10,7 @@ import App from "./components/App";
 import { Loader } from "./components/reusables/Loader";
 import { store } from "./store";
 import { TmDb } from "./localDb/tmdb";
+import { getTasks } from "./store/actions/taskActions";
 
 function appRenderer() {
   if (window.configLoded) {
@@ -31,10 +32,11 @@ const intervalId = setInterval(() => {
     const loaderEl = document.getElementById("loading");
     if (loaderEl) {
       loaderEl.remove();
+      //Intialize redux state first time if dbObj is present
+      store.dispatch(getTasks());
     }
   }
 }, 1000);
-store.subscribe(async (newState) => {
-  console.log("storeeeListener", newState, store.getState());
+store.subscribe(async () => {
   await TmDb.updateInToDb(store.getState());
 });

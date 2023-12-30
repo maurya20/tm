@@ -15,4 +15,13 @@ export class TmDb {
       console.log(err);
     }
   }
+
+  static async readFromTmDb() {
+    try {
+      const tmObj = await localForage.getItem(dbName);
+      return tmObj;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
