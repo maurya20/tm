@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TextEditor } from "../reusables/TextEditor";
 import { useDispatch } from "react-redux";
 import { createTask } from "../../store/actions/taskActions";
-import { useLocalDb } from "../../hooks/useLocalDb";
 import { getNextTaskId } from "../../helper/helper";
 import { firstTaskId } from "../../constants";
+
 export const CreateTask = (props) => {
-  const { getItem, setItem } = useLocalDb({ fallbackValue: [] });
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch();
-
+  const [defaultEditorVal, setEditorDefautVal] = useState(
+    "<p>Enter task description here...</p>"
+  );
   const emitEditorVal = (val) => {
     setDescription(val);
   };
@@ -44,8 +45,9 @@ export const CreateTask = (props) => {
             Description
           </label>
           <TextEditor
-            defaultVal={"<p>Enter task description here...</p>"}
+            defaultVal={defaultEditorVal}
             emitVal={emitEditorVal}
+            onFocus={() => setEditorDefautVal("")}
           />
         </div>
         <button
