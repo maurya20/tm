@@ -39,13 +39,13 @@ export const CreateTask = (props) => {
             Description
           </label>
           <TextEditor
-            defaultVal={"<p>Hello from CKEditor&nbsp;5!</p>"}
+            defaultVal={"<p>Enter task description here...</p>"}
             emitVal={emitEditorVal}
           />
         </div>
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary float-end"
           onClick={createNewTask}
         >
           Submit
