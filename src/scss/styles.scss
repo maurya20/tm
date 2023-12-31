@@ -5,9 +5,11 @@
     padding: 0px;
 }
 
-// .editor {
-//     //max-width: 80%;
-// }
+.tmalert {
+    display:block;
+    width:60%;
+    margin:0 auto;
+}
 .form-horizontal{
     display:block;
     width:70%;
@@ -33,7 +35,7 @@
     cursor: pointer;
   }
   
-  #spinner{
+  #spinner {
     position: absolute;
     top: 50%;
     left: 50%;
