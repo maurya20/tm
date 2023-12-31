@@ -9,7 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./components/App";
 import { Loader } from "./components/reusables/Loader";
 import { store } from "./store";
-import { TmDb } from "./localDb/tmdb";
+import { TmDb } from "./services/tmdb";
 import { getTasks } from "./store/actions/taskActions";
 
 function appRenderer() {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../store/actions/taskActions";
 import { getNextTaskId } from "../../helper/helper";
 import { useLoader } from "../../hooks/useLoader";
+import { LoaderService } from "../../services/loader";
 
 export const CreateTask = (props) => {
   const [title, setTitle] = useState("");
@@ -15,9 +16,9 @@ export const CreateTask = (props) => {
   const tm = useSelector((state) => state.tm);
   const { showLoader, hideLoader } = useLoader();
   const test = () => {
-    showLoader();
+    LoaderService.showLoader();
     setTimeout(() => {
-      hideLoader();
+      LoaderService.hideLoader();
     }, 4000);
   };
 

@@ -1,4 +1,4 @@
-import { TmDb } from "../../localDb/tmdb";
+import { TmDb } from "../../services/tmdb";
 import { CREATE_TASK, GET_TASKS } from "./actionTypes";
 
 export const createTask = (task) => async (dispatch) => {
