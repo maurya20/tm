@@ -15,12 +15,6 @@ export const CreateTask = (props) => {
   );
   const tm = useSelector((state) => state.tm);
   const { showLoader, hideLoader } = useLoader();
-  const test = () => {
-    LoaderService.showLoader();
-    setTimeout(() => {
-      LoaderService.hideLoader();
-    }, 4000);
-  };
 
   const emitEditorVal = (val) => {
     setDescription(val);
@@ -36,7 +30,6 @@ export const CreateTask = (props) => {
   };
   return (
     <div className="editor">
-      <button onClick={() => test()}>tsret</button>
       <form className="form-horizontal">
         <div className="mb-3">
           <label htmlFor="taskTitle" className="htmlFm-label">

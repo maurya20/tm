@@ -12,6 +12,7 @@ import { store } from "./store";
 import { TmDb } from "./services/tmdb";
 import { getTasks } from "./store/actions/taskActions";
 
+var isStillLoading;
 function appRenderer() {
   if (window.configLoded) {
     const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,8 +22,11 @@ function appRenderer() {
       </Provider>
     );
   } else {
-    const loading = ReactDOM.createRoot(document.getElementById("loading"));
-    loading.render(<Loader />);
+    if (!isStillLoading) {
+      const loading = ReactDOM.createRoot(document.getElementById("loading"));
+      loading.render(<Loader />);
+      isStillLoading = true;
+    }
   }
 }
 
