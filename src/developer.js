@@ -39,5 +39,7 @@ const intervalId = setInterval(() => {
   }
 }, 1000);
 store.subscribe(async () => {
+  //LoaderService.showLoader();
   await TmDb.updateInToDb(store.getState());
+  //LoaderService.hideLoader();
 });
