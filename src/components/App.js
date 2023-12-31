@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { Header } from "./layouts/Header";
 import { CreateTask } from "./pages/CreateTask";
 import { Backlogs } from "./pages/Backlogs";
+import { Detail } from "./pages/Detail";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -46,6 +47,7 @@ class App extends Component {
               element={<Backlogs blTasks={this.props.tm?.blTasks} />}
             />
             <Route path="create" element={<CreateTask />} />
+            <Route path="detail/:taskId" element={<Detail />} />
           </Route>
         </Routes>
       </BrowserRouter>

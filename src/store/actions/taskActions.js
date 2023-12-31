@@ -1,3 +1,4 @@
+import { TMAlert } from "../../services/alertService";
 import { LoaderService } from "../../services/loader";
 import { TmDb } from "../../services/tmdb";
 import { CREATE_TASK, GET_TASKS } from "./actionTypes";
@@ -8,6 +9,7 @@ export const createTask = (task) => async (dispatch) => {
   //No required just to show loader for more time
   setTimeout(() => {
     LoaderService.hideLoader();
+    TMAlert.showAlert("success", "Task created successfully.");
   }, 2000);
 };
 

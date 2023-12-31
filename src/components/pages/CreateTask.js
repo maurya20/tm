@@ -29,6 +29,8 @@ export const CreateTask = (props) => {
       status: backlog,
     };
     dispatch(createTask(newTask));
+    setTitle("");
+    setDescription("");
   };
   return (
     <div className="editor">
@@ -38,6 +40,7 @@ export const CreateTask = (props) => {
             Title
           </label>
           <input
+            value={title}
             type="text"
             className="form-control"
             id="taskTitle"
