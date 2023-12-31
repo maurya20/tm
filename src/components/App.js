@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import * as bootstrap from "bootstrap";
+import { connect } from "react-redux";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Header } from "./layouts/Header";
 import { CreateTask } from "./pages/CreateTask";
-import { OutletContainer } from "./layouts/OutletContainer";
-import { getNextTaskId } from "../helper/helper";
-import { firstTaskId } from "../constants";
+import { Backlogs } from "./pages/Backlogs";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -42,6 +41,10 @@ class App extends Component {
         <Routes>
           <Route element={<Header />}>
             <Route path="/" element={<Home />} />
+            <Route
+              path="/backlogs"
+              element={<Backlogs blTasks={this.props.tm?.blTasks} />}
+            />
             <Route path="create" element={<CreateTask />} />
           </Route>
         </Routes>
@@ -49,5 +52,9 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+function mapStateToProps(state) {
+  return {
+    tm: state?.tm,
+  };
+}
+export default connect(mapStateToProps)(App);

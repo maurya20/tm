@@ -5,6 +5,7 @@ import { createTask } from "../../store/actions/taskActions";
 import { getNextTaskId } from "../../helper/helper";
 import { useLoader } from "../../hooks/useLoader";
 import { LoaderService } from "../../services/loader";
+import { backlog } from "../../constants";
 
 export const CreateTask = (props) => {
   const [title, setTitle] = useState("");
@@ -25,6 +26,7 @@ export const CreateTask = (props) => {
       title: title,
       description: description,
       id: getNextTaskId(tm?.lastTaskId),
+      status: backlog,
     };
     dispatch(createTask(newTask));
   };
