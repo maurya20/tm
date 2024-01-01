@@ -6,3 +6,5 @@ export function getNextTaskId(lastTaskId) {
   let newTaskNumber = taskNumber + 1;
   return "TM-" + String(newTaskNumber);
 }
+
+export function getTaskFromId(taskId) {}

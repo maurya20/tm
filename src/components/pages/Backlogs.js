@@ -1,6 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Backlogs = ({ blTasks }) => {
+  const navigate = useNavigate();
+  const goToDetail = (id) => {
+    navigate("detail/" + id);
+  };
   return (
     <>
       {blTasks?.length ? (
@@ -14,7 +19,11 @@ export const Backlogs = ({ blTasks }) => {
           <tbody>
             {blTasks.map((task, index) => {
               return (
-                <tr key={task.id}>
+                <tr
+                  key={task.id}
+                  onClick={() => goToDetail(task.id)}
+                  className="cursor-pointer"
+                >
                   <th scope="row">{index + 1}</th>
                   <td>{task.title}</td>
                 </tr>
