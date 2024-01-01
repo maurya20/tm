@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const Backlogs = ({ blTasks }) => {
   const navigate = useNavigate();
   const goToDetail = (id) => {
-    navigate("detail/" + id);
+    navigate("/detail/" + id);
   };
   return (
     <>
