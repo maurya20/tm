@@ -12,5 +12,6 @@ export const defaultTmObj = {
   toDoTasks: [],
   inProgressTasks: [],
   doneTasks: [],
+  archivedTasks: [],
   lastTaskId: "",
 };

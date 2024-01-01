@@ -47,7 +47,10 @@ class App extends Component {
               element={<Backlogs blTasks={this.props.tm?.blTasks} />}
             />
             <Route path="create" element={<CreateTask />} />
-            <Route path="detail/:taskId" element={<Detail />} />
+            <Route
+              path="detail/:taskId"
+              element={<Detail tmObj={this.props.tm} />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>
