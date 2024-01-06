@@ -25,6 +25,11 @@
     width:70%;
     margin:0 auto;
 }
+.tm-col {
+  min-height: 92vh;
+    border: 3px dashed goldenrod;
+    border-radius: 10px;
+}
 
 //ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred
 .ck-editor__editable {
