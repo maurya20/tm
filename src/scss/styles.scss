@@ -9,6 +9,16 @@
     display:block;
     width:60%;
     margin:0 auto;
+    color: azure;
+    position: fixed;
+    top: 200px;
+    left: 20%;
+}
+.tm-success {
+  background-color: #1f6f48 !important;
+}
+.tm-danger {
+  background-color: #eb0d0d !important;
 }
 .form-horizontal{
     display:block;

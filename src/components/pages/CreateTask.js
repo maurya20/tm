@@ -60,7 +60,7 @@ export const CreateTask = (props) => {
         </div>
         <button
           type="submit"
-          className="btn btn-primary float-end"
+          className="btn btn-primary float-end mb-2"
           onClick={createNewTask}
         >
           Submit
