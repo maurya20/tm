@@ -31,6 +31,7 @@ export const CreateTask = (props) => {
     dispatch(createTask(newTask));
     setTitle("");
     setDescription("");
+    setEditorDefautVal("");
   };
   return (
     <div className="editor">

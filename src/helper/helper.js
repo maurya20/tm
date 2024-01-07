@@ -33,3 +33,78 @@ export function getTaskFromId(taskId, tmObj) {
   }
   return null;
 }
+
+export function addIntoNewStatusCategory(task, newStatus, oldState) {
+  let state = JSON.parse(JSON.stringify(oldState));
+  console.log("state????", state);
+  if (task.status == "bklg") {
+    const index = state.blTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.blTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+  if (task.status == "toDo") {
+    const index = state.toDoTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.blTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+  if (task.status == "done") {
+    const index = state.blTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.doneTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+  if (task.status == "inPg") {
+    const index = state.blTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.inProgressTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+  if (task.status == "inRe") {
+    const index = state.blTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.inReviewTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+  if (task.status == "archived") {
+    const index = state.blTasks.findIndex((t) => t.id == task.id);
+    if (index > -1) {
+      state.archivedTasks.splice(index, 1);
+      task.status = newStatus;
+      return pushIntoNewCategory(task, newStatus, state);
+    }
+  }
+}
+
+function pushIntoNewCategory(task, newStatus, state) {
+  if (newStatus == "toDo") {
+    state.toDoTasks.push(task);
+  }
+  if (newStatus == "bklg") {
+    state.blTasks.push(task);
+  }
+  if (newStatus == "done") {
+    state.doneTasks.push(task);
+  }
+  if (newStatus == "inPg") {
+    state.inProgressTasks.push(task);
+  }
+  if (newStatus == "inRe") {
+    state.inReviewTasks.push(task);
+  }
+  if (newStatus == "archived") {
+    state.archivedTasks.push(task);
+  }
+  return state;
+}

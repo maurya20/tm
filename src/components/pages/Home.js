@@ -2,6 +2,7 @@ import React from "react";
 import { TMAlert } from "../../services/alertService";
 import { Board } from "../layouts/Board";
 export const Home = (props) => {
+  console.log(">>>>>", props);
   const openAlert = () => {
     TMAlert.showAlert("danger", "I am danger alert!!!!");
   };

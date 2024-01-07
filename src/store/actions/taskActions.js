@@ -1,7 +1,7 @@
 import { TMAlert } from "../../services/alertService";
 import { LoaderService } from "../../services/loader";
 import { TmDb } from "../../services/tmdb";
-import { CREATE_TASK, GET_TASKS } from "./actionTypes";
+import { CHANGE_TASK_STATUS, CREATE_TASK, GET_TASKS } from "./actionTypes";
 
 export const createTask = (task) => async (dispatch) => {
   LoaderService.showLoader();
@@ -18,4 +18,11 @@ export const getTasks = () => async (dispatch) => {
   if (tmObj) {
     dispatch({ type: GET_TASKS, payload: tmObj?.tm });
   }
+};
+
+export const changeTaskStatus = (task, newStatus) => async (dispatch) => {
+  dispatch({
+    type: CHANGE_TASK_STATUS,
+    payload: { task: task, newStatus: newStatus },
+  });
 };

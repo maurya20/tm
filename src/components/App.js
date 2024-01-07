@@ -41,7 +41,7 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route element={<Header />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home tmObj={this.props.tm} />} />
             <Route
               path="/backlogs"
               element={<Backlogs blTasks={this.props.tm?.blTasks} />}

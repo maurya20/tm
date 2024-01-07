@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskFromId } from "../../helper/helper";
+import { useDispatch } from "react-redux";
+import { changeTaskStatus } from "../../store/actions/taskActions";
+import { taskStatusObjMapping } from "../../constants";
 
 export const Detail = (props) => {
   const { taskId } = useParams();
   const [taskObj, setTaskObj] = useState(null);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setTaskObj(getTaskFromId(taskId, props.tmObj));
   }, [taskId, props.tmObj?.lastTaskId]);
+
+  const onStatusChange = (e, value) => {
+    dispatch(changeTaskStatus(taskObj, value));
+  };
   return (
     <div>
       <div
@@ -22,28 +29,57 @@ export const Detail = (props) => {
             className="btn btn-primary dropdown-toggle"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            value={"Backlog"}
           >
-            Backlog
+            {taskStatusObjMapping[taskObj?.status]}
           </button>
           <ul className="dropdown-menu">
             <li>
-              <button className="dropdown-item">To Do</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "toDo")}
+              >
+                To Do
+              </button>
             </li>
             <li>
-              <button className="dropdown-item">In Progress</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "inPg")}
+              >
+                In Progress
+              </button>
             </li>
             <li>
-              <button className="dropdown-item">In Review</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "inRe")}
+              >
+                In Review
+              </button>
             </li>
             <li>
-              <button className="dropdown-item">Done</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "done")}
+              >
+                Done
+              </button>
             </li>
             <li>
-              <button className="dropdown-item">Archived</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "archived")}
+              >
+                Archived
+              </button>
             </li>
             <li>
-              <button className="dropdown-item">Backlog</button>
+              <button
+                className="dropdown-item"
+                onClick={(e) => onStatusChange(e, "bklg")}
+              >
+                Backlog
+              </button>
             </li>
           </ul>
         </div>

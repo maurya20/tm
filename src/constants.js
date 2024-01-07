@@ -16,3 +16,12 @@ export const defaultTmObj = {
   archivedTasks: [],
   lastTaskId: "",
 };
+
+export const taskStatusObjMapping = {
+  bklg: "BackLog",
+  toDo: "To Do",
+  done: "Done",
+  inPg: "In Progress",
+  inRe: "In Review",
+  archived: "Archived",
+};
