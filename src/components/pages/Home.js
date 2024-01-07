@@ -18,7 +18,7 @@ export const Home = (props) => {
       >
         Show live alert
       </button> */}
-      <Board />
+      <Board tmObj={props.tmObj} />
     </>
   );
 };
