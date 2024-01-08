@@ -62,3 +62,18 @@
   .cursor-pointer{
     cursor: pointer;
   }
+
+  .quick-view {
+    //visibility: hidden;
+    :hover {
+      visibility: visible;
+      cursor: pointer;
+    }
+  }
+
+  .tm-link{
+    color: blue;
+    :hover{
+      text-decoration: underline;
+    }
+  }

@@ -52,7 +52,7 @@ export const Detail = (props) => {
             <li>
               <button
                 className="dropdown-item"
-                onClick={(e) => onStatusChange(e, "inRe")}
+                onClick={(e) => onStatusChange(e, "inReview")}
               >
                 In Review
               </button>

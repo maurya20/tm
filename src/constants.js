@@ -22,6 +22,6 @@ export const taskStatusObjMapping = {
   toDo: "To Do",
   done: "Done",
   inPg: "In Progress",
-  inRe: "In Review",
+  inReview: "In Review",
   archived: "Archived",
 };

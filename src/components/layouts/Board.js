@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 export const Board = (props) => {
   const {
     blTasks,
@@ -8,6 +9,11 @@ export const Board = (props) => {
     archivedTasks,
     toDoTasks,
   } = props.tmObj;
+
+  const navigate = useNavigate();
+  const goToDetail = (id) => {
+    navigate("/detail/" + id);
+  };
   return (
     <div className="container text-center">
       <div className="row">
@@ -21,7 +27,15 @@ export const Board = (props) => {
                   style={{ width: "18rem" }}
                   key={item.id}
                 >
-                  <div className="card-header">{item.id}</div>
+                  <div className="card-header">
+                    <span
+                      className="tm-link"
+                      role="button"
+                      onClick={() => goToDetail(item.id)}
+                    >
+                      {item.id}
+                    </span>
+                  </div>
                   <div>
                     <p>{item.title}</p>
                   </div>
@@ -39,7 +53,15 @@ export const Board = (props) => {
                   style={{ width: "18rem" }}
                   key={item.id}
                 >
-                  <div className="card-header">{item.id}</div>
+                  <div className="card-header">
+                    <span
+                      className="tm-link"
+                      role="button"
+                      onClick={() => goToDetail(item.id)}
+                    >
+                      {item.id}
+                    </span>
+                  </div>
                   <div>
                     <p>{item.title}</p>
                   </div>
@@ -57,7 +79,15 @@ export const Board = (props) => {
                   style={{ width: "18rem" }}
                   key={item.id}
                 >
-                  <div className="card-header">{item.id}</div>
+                  <div className="card-header">
+                    <span
+                      className="tm-link"
+                      role="button"
+                      onClick={() => goToDetail(item.id)}
+                    >
+                      {item.id}
+                    </span>
+                  </div>
                   <div>
                     <p>{item.title}</p>
                   </div>
@@ -75,7 +105,15 @@ export const Board = (props) => {
                   style={{ width: "18rem" }}
                   key={item.id}
                 >
-                  <div className="card-header">{item.id}</div>
+                  <div className="card-header">
+                    <span
+                      className="tm-link"
+                      role="button"
+                      onClick={() => goToDetail(item.id)}
+                    >
+                      {item.id}
+                    </span>
+                  </div>
                   <div>
                     <p>{item.title}</p>
                   </div>
