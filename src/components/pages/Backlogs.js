@@ -23,6 +23,8 @@ export const Backlogs = ({ blTasks }) => {
                   key={task.id}
                   onClick={() => goToDetail(task.id)}
                   className="cursor-pointer"
+                  data-bs-toggle="tooltip"
+                  title="Task details"
                 >
                   <th scope="row">{index + 1}</th>
                   <td>{task.title}</td>

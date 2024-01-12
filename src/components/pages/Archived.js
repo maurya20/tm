@@ -20,6 +20,8 @@ export const Archived = ({ archivedTasks }) => {
             {archivedTasks.map((task, index) => {
               return (
                 <tr
+                  data-bs-toggle="tooltip"
+                  title="Task details"
                   key={task.id}
                   onClick={() => goToDetail(task.id)}
                   className="cursor-pointer"
