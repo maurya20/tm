@@ -77,3 +77,14 @@
       text-decoration: underline;
     }
   }
+
+  .no-tasks-info{
+    background-color: #93b7b3;
+    text-align: center;
+    width: 70%;
+    margin-left: 16%;
+    margin-top: 5%;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 10000;
+  }

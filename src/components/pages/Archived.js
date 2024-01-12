@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Backlogs = ({ blTasks }) => {
+export const Archived = ({ archivedTasks }) => {
   const navigate = useNavigate();
   const goToDetail = (id) => {
     navigate("/detail/" + id);
   };
   return (
     <>
-      {blTasks?.length ? (
+      {archivedTasks?.length ? (
         <table className="table table-hover">
           <thead>
             <tr>
@@ -17,7 +17,7 @@ export const Backlogs = ({ blTasks }) => {
             </tr>
           </thead>
           <tbody>
-            {blTasks.map((task, index) => {
+            {archivedTasks.map((task, index) => {
               return (
                 <tr
                   key={task.id}
@@ -34,7 +34,7 @@ export const Backlogs = ({ blTasks }) => {
       ) : (
         <div className="jumbotron jumbotron-fluid no-tasks-info">
           <div className="container">
-            <h1 className="display-4">No backlog tasks found!</h1>
+            <h1 className="display-4">No archived tasks found!</h1>
           </div>
         </div>
       )}

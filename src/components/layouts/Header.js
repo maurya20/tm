@@ -31,6 +31,16 @@ export const Header = (props) => {
               Backlogs
             </button>
           </NavLink>
+          <NavLink to="archived">
+            <button
+              type="button"
+              className="btn btn-info"
+              data-bs-toggle="tooltip"
+              title="Go to archived tasks"
+            >
+              Archived
+            </button>
+          </NavLink>
           <NavLink to="create">
             <button
               type="button"

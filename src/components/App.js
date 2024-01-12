@@ -7,6 +7,7 @@ import { Header } from "./layouts/Header";
 import { CreateTask } from "./pages/CreateTask";
 import { Backlogs } from "./pages/Backlogs";
 import { Detail } from "./pages/Detail";
+import { Archived } from "./pages/Archived";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -50,6 +51,12 @@ class App extends Component {
             <Route
               path="detail/:taskId"
               element={<Detail tmObj={this.props.tm} />}
+            />
+            <Route
+              path="/archived"
+              element={
+                <Archived archivedTasks={this.props.tm?.archivedTasks} />
+              }
             />
           </Route>
         </Routes>
