@@ -4,11 +4,14 @@ import { getTaskFromId } from "../../helper/helper";
 import { useDispatch } from "react-redux";
 import { changeTaskStatus } from "../../store/actions/taskActions";
 import { taskStatusObjMapping } from "../../constants";
+import { TmModal } from "../layouts/TmModal";
 
 export const Detail = (props) => {
   const { taskId } = useParams();
   const [taskObj, setTaskObj] = useState(null);
   const dispatch = useDispatch();
+  const [modalOpened, setModalOpned] = useState(false);
+  const [modalFor, setModalFor] = useState("title");
   useEffect(() => {
     setTaskObj(getTaskFromId(taskId, props.tmObj));
   }, [taskId, props.tmObj?.lastTaskId]);
@@ -16,10 +19,17 @@ export const Detail = (props) => {
   const onStatusChange = (e, value) => {
     dispatch(changeTaskStatus(taskObj, value));
   };
+  const openEditModal = (modalFor) => {
+    setModalFor("description");
+    setModalOpned(true);
+  };
+  const onSave = (value) => {
+    console.log("inonSave>>>>", value, modalFor);
+  };
   return (
     <div>
       <div
-        className="btn-group float-end mt-2"
+        className="btn-group float-end mt-2 me-2 mb-1"
         role="group"
         aria-label="Button group with nested dropdown"
       >
@@ -86,9 +96,27 @@ export const Detail = (props) => {
       </div>
 
       <div className="form-horizontal">
-        <h3>{taskObj?.title}</h3>
+        <div className="title-div m-2 p-1">
+          <h3>{taskObj?.title}</h3>
+          <i
+            className="bi bi-pencil-fill ms-5 edit-icon"
+            type="button"
+            data-bs-toggle="tooltip"
+            title="Edit task title"
+            onClick={() => openEditModal("title")}
+          ></i>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: taskObj?.description }}></div>
       </div>
+      {modalOpened && (
+        <TmModal
+          modalFor={modalFor}
+          onSave={onSave}
+          previousValue={
+            modalFor == "title" ? taskObj?.title : taskObj?.description
+          }
+        />
+      )}
     </div>
   );
 };
