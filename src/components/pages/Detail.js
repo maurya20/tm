@@ -20,7 +20,7 @@ export const Detail = (props) => {
     dispatch(changeTaskStatus(taskObj, value));
   };
   const openEditModal = (modalFor) => {
-    setModalFor("description");
+    setModalFor(modalFor);
     setModalOpned(true);
   };
   const onSave = (value) => {
@@ -98,25 +98,55 @@ export const Detail = (props) => {
       <div className="form-horizontal">
         <div className="title-div m-2 p-1">
           <h3>{taskObj?.title}</h3>
-          <i
-            className="bi bi-pencil-fill ms-5 edit-icon"
-            type="button"
-            data-bs-toggle="tooltip"
-            title="Edit task title"
-            onClick={() => openEditModal("title")}
-          ></i>
+          <TmModal
+            opened={modalOpened}
+            modalFor={modalFor}
+            onSave={onSave}
+            previousValue={
+              modalFor == "title" ? taskObj?.title : taskObj?.description
+            }
+          >
+            <i
+              className="bi bi-pencil-fill ms-5 edit-icon"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              title="Edit task title"
+              onClick={() => openEditModal("title")}
+            ></i>
+          </TmModal>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: taskObj?.description }}></div>
+        <div className="title-div m-2 p-1">
+          <div dangerouslySetInnerHTML={{ __html: taskObj?.description }}></div>
+          <TmModal
+            opened={modalOpened}
+            modalFor={modalFor}
+            onSave={onSave}
+            previousValue={
+              modalFor == "title" ? taskObj?.title : taskObj?.description
+            }
+          >
+            <i
+              className="bi bi-pencil-fill ms-5 edit-icon"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              title="Edit task description"
+              onClick={() => openEditModal("description")}
+            ></i>
+          </TmModal>
+        </div>
       </div>
-      {modalOpened && (
+      {/* {modalOpened && (
         <TmModal
+          opened={modalOpened}
           modalFor={modalFor}
           onSave={onSave}
           previousValue={
             modalFor == "title" ? taskObj?.title : taskObj?.description
           }
         />
-      )}
+      )} */}
     </div>
   );
 };

@@ -5,16 +5,11 @@ import { TextEditor } from "../reusables/TextEditor";
 export const TmModal = (props) => {
   const [content, setContent] = useState(props.previousValue);
   useEffect(() => {
-    setTimeout(() => {
-      var myModal = new bootstrap.Modal(
-        document.getElementById("staticBackdrop"),
-        {}
-      );
-      myModal.toggle();
-    }, 100);
-  }, []);
+    setContent(props.previousValue);
+  }, [props.previousValue]);
   return (
     <main>
+      {props.children}
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -42,7 +37,7 @@ export const TmModal = (props) => {
                 <div className="mb-3">
                   <textarea
                     rows={3}
-                    value={content}
+                    value={props.previousValue}
                     type="text"
                     className="form-control"
                     id="taskTitle"
@@ -58,7 +53,7 @@ export const TmModal = (props) => {
                     Description
                   </label>
                   <TextEditor
-                    defaultVal={content}
+                    defaultVal={props.previousValue}
                     emitVal={(val) => setContent(val)}
                     onFocus={() => void null}
                   />
