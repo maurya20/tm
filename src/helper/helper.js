@@ -117,3 +117,54 @@ function pushIntoNewCategory(task, newStatus, state) {
   }
   return state;
 }
+
+export function editTaskInCategory(updatedTask, oldState) {
+  let state = { ...oldState };
+  if (updatedTask.status == "bklg") {
+    const index = state.blTasks.findIndex((t) => t.id == updatedTask.id);
+    if (index > -1) {
+      state.blTasks[index].title = updatedTask.title;
+      state.blTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else if (updatedTask.status == "toDo") {
+    const index = state.toDoTasks.findIndex((t) => t.id == updatedTask.id);
+    if (index > -1) {
+      state.toDoTasks[index].title = updatedTask.title;
+      state.toDoTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else if (updatedTask.status == "done") {
+    const index = state.doneTasks.findIndex((t) => t.id == updatedTask.id);
+    if (index > -1) {
+      state.doneTasks[index].title = updatedTask.title;
+      state.doneTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else if (updatedTask.status == "inPg") {
+    const index = state.inProgressTasks.findIndex(
+      (t) => t.id == updatedTask.id
+    );
+    if (index > -1) {
+      state.inProgressTasks[index].title = updatedTask.title;
+      state.inProgressTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else if (updatedTask.status == "inReview") {
+    const index = state.inReviewTasks.findIndex((t) => t.id == updatedTask.id);
+    if (index > -1) {
+      state.inReviewTasks[index].title = updatedTask.title;
+      state.inReviewTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else if (updatedTask.status == "archived") {
+    const index = state.archivedTasks.findIndex((t) => t.id == updatedTask.id);
+    if (index > -1) {
+      state.archivedTasks[index].title = updatedTask.title;
+      state.archivedTasks[index].description = updatedTask.description;
+      return state;
+    }
+  } else {
+    return state;
+  }
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as bootstrap from "bootstrap";
 import { TextEditor } from "../reusables/TextEditor";
 
 export const TmModal = (props) => {
@@ -37,7 +36,7 @@ export const TmModal = (props) => {
                 <div className="mb-3">
                   <textarea
                     rows={3}
-                    value={props.previousValue}
+                    value={content}
                     type="text"
                     className="form-control"
                     id="taskTitle"

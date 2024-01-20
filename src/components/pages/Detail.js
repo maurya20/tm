@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskFromId } from "../../helper/helper";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus } from "../../store/actions/taskActions";
+import { changeTaskStatus, updateTask } from "../../store/actions/taskActions";
 import { taskStatusObjMapping } from "../../constants";
 import { TmModal } from "../layouts/TmModal";
 
@@ -25,6 +25,19 @@ export const Detail = (props) => {
   };
   const onSave = (value) => {
     console.log("inonSave>>>>", value, modalFor);
+    let editedTask = {
+      ...taskObj,
+    };
+    if (modalFor == "title") {
+      editedTask.title = value;
+    } else if (modalFor == "description") {
+      editedTask.description = value;
+    }
+    dispatch(updateTask(editedTask));
+    setTimeout(() => {
+      setTaskObj(editedTask);
+    }, 1000);
+    //setTaskObj(getTaskFromId(taskId, editedTask));
   };
   return (
     <div>
