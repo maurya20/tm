@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changeTaskStatus, updateTask } from "../../store/actions/taskActions";
 import { taskStatusObjMapping } from "../../constants";
 import { TmModal } from "../layouts/TmModal";
+import { Signature } from "../reusables/Signature";
 
 export const Detail = (props) => {
   const { taskId } = useParams();
@@ -150,16 +151,7 @@ export const Detail = (props) => {
           </TmModal>
         </div>
       </div>
-      {/* {modalOpened && (
-        <TmModal
-          opened={modalOpened}
-          modalFor={modalFor}
-          onSave={onSave}
-          previousValue={
-            modalFor == "title" ? taskObj?.title : taskObj?.description
-          }
-        />
-      )} */}
+      <Signature />
     </div>
   );
 };
