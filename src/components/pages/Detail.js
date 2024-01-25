@@ -10,6 +10,7 @@ import { Signature } from "../reusables/Signature";
 export const Detail = (props) => {
   const { taskId } = useParams();
   const [taskObj, setTaskObj] = useState(null);
+  const [sigView, toggleSigView] = useState(false);
   const dispatch = useDispatch();
   const [modalOpened, setModalOpned] = useState(false);
   const [modalFor, setModalFor] = useState("title");
@@ -34,6 +35,17 @@ export const Detail = (props) => {
       editedTask.description = value;
     }
     dispatch(updateTask(editedTask));
+    setTimeout(() => {
+      setTaskObj(editedTask);
+    }, 100);
+  };
+  const onSigSave = (data) => {
+    let editedTask = {
+      ...taskObj,
+    };
+    editedTask.sign = data;
+    dispatch(updateTask(editedTask));
+    toggleSigView(false);
     setTimeout(() => {
       setTaskObj(editedTask);
     }, 100);
@@ -109,7 +121,7 @@ export const Detail = (props) => {
 
       <div className="form-horizontal">
         <div>
-          <div className="title-div m-2 p-1">
+          <div className="edit-option-div m-2 p-1">
             <h3>{taskObj?.title}</h3>
             <TmModal
               opened={modalOpened}
@@ -130,7 +142,7 @@ export const Detail = (props) => {
             </TmModal>
           </div>
         </div>
-        <div className="title-div m-2 p-1">
+        <div className="edit-option-div m-2 p-1">
           <div dangerouslySetInnerHTML={{ __html: taskObj?.description }}></div>
           <TmModal
             opened={modalOpened}
@@ -150,8 +162,20 @@ export const Detail = (props) => {
             ></i>
           </TmModal>
         </div>
+        <div>
+          <div className="edit-option-div m-2 p-1">
+            <h5>Signature</h5>
+            <img className="sig-img" alt="signature" src={taskObj?.sign} />
+            <i
+              className="bi bi-pencil-fill ms-5 edit-icon"
+              type="button"
+              title="Add/Edit Signature"
+              onClick={() => toggleSigView(!sigView)}
+            ></i>
+          </div>
+          {sigView && <Signature onSigSave={onSigSave} />}
+        </div>
       </div>
-      <Signature />
     </div>
   );
 };

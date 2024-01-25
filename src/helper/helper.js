@@ -125,6 +125,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.blTasks[index].title = updatedTask.title;
       state.blTasks[index].description = updatedTask.description;
+      state.blTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else if (updatedTask.status == "toDo") {
@@ -132,6 +133,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.toDoTasks[index].title = updatedTask.title;
       state.toDoTasks[index].description = updatedTask.description;
+      state.toDoTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else if (updatedTask.status == "done") {
@@ -139,6 +141,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.doneTasks[index].title = updatedTask.title;
       state.doneTasks[index].description = updatedTask.description;
+      state.doneTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else if (updatedTask.status == "inPg") {
@@ -148,6 +151,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.inProgressTasks[index].title = updatedTask.title;
       state.inProgressTasks[index].description = updatedTask.description;
+      state.inProgressTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else if (updatedTask.status == "inReview") {
@@ -155,6 +159,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.inReviewTasks[index].title = updatedTask.title;
       state.inReviewTasks[index].description = updatedTask.description;
+      state.inReviewTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else if (updatedTask.status == "archived") {
@@ -162,6 +167,7 @@ export function editTaskInCategory(updatedTask, oldState) {
     if (index > -1) {
       state.archivedTasks[index].title = updatedTask.title;
       state.archivedTasks[index].description = updatedTask.description;
+      state.archivedTasks[index].sign = updatedTask.sign;
       return state;
     }
   } else {
