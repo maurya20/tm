@@ -6,7 +6,7 @@ import { OutletContainer } from "./OutletContainer";
 export const Header = (props) => {
   return (
     <>
-      <nav className="navbar bg-body-tertiary navwrap">
+      <nav className="navbar sticky-top bg-body-tertiary navwrap">
         <div className="container-fluid">
           <a className="navbar-brand">
             <img src={logo} alt="logo-img" width={80} height={36} />
