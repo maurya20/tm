@@ -170,7 +170,12 @@ export const Detail = (props) => {
               className="bi bi-pencil-fill ms-5 edit-icon"
               type="button"
               title="Add/Edit Signature"
-              onClick={() => toggleSigView(!sigView)}
+              onClick={() => {
+                toggleSigView(!sigView);
+                setTimeout(() => {
+                  window.scrollTo(0, document.body.scrollHeight);
+                }, 300);
+              }}
             ></i>
           </div>
           {sigView && <Signature onSigSave={onSigSave} />}
