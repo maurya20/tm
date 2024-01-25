@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { getListStyle, getItemStyle, getTaskFromId } from "../../helper/helper";
+import { useDispatch } from "react-redux";
+import { changeTaskStatus } from "../../store/actions/taskActions";
+
 export const Board = (props) => {
   const {
     blTasks,
@@ -11,117 +16,178 @@ export const Board = (props) => {
   } = props.tmObj;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const goToDetail = (id) => {
     navigate("/detail/" + id);
   };
+  const handleDragEnd = (data) => {
+    console.log("datatat", data);
+    const taskObj = getTaskFromId(data.draggableId, props.tmObj);
+    const newStatus = data.destination.droppableId;
+    dispatch(changeTaskStatus(taskObj, newStatus));
+  };
   return (
     <div className="container text-center">
-      <div className="row">
-        <div className="col tm-col">
-          <h4>To Do</h4>
-          {toDoTasks &&
-            toDoTasks.map((item) => {
-              return (
-                <div
-                  className="card mb-1"
-                  style={{ width: "18rem" }}
-                  key={item.id}
-                >
-                  <div className="card-header">
-                    <span
-                      className="tm-link"
-                      role="button"
-                      onClick={() => goToDetail(item.id)}
-                    >
-                      {item.id}
-                    </span>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <div className="row">
+          <Droppable droppableId="toDo">
+            {(provided, snapshot) => (
+              <div
+                className="col tm-col"
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                <h4>To Do</h4>
+                {toDoTasks &&
+                  toDoTasks.map((item, index) => {
+                    return (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className="card mb-1"
+                            style={{
+                              width: "18rem",
+                              ...getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              ),
+                            }}
+                            key={item.id}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="card-header">
+                              <span
+                                className="tm-link"
+                                role="button"
+                                onClick={() => goToDetail(item.id)}
+                              >
+                                {item.id}
+                              </span>
+                            </div>
+                            <div>
+                              <p>{item.title}</p>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId="inPg">
+            {(provided, snapshot) => (
+              <div
+                className="col tm-col"
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                <h4>In Progress</h4>
+                {inProgressTasks &&
+                  inProgressTasks.map((item, index) => {
+                    return (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className="card mb-1"
+                            style={{
+                              width: "18rem",
+                              ...getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              ),
+                            }}
+                            key={item.id}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="card-header">
+                              <span
+                                className="tm-link"
+                                role="button"
+                                onClick={() => goToDetail(item.id)}
+                              >
+                                {item.id}
+                              </span>
+                            </div>
+                            <div>
+                              <p>{item.title}</p>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <div className="col tm-col">
+            <h4>In Review</h4>
+            {inReviewTasks &&
+              inReviewTasks.map((item) => {
+                return (
+                  <div
+                    className="card mb-1"
+                    style={{ width: "18rem" }}
+                    key={item.id}
+                  >
+                    <div className="card-header">
+                      <span
+                        className="tm-link"
+                        role="button"
+                        onClick={() => goToDetail(item.id)}
+                      >
+                        {item.id}
+                      </span>
+                    </div>
+                    <div>
+                      <p>{item.title}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p>{item.title}</p>
+                );
+              })}
+          </div>
+          <div className="col tm-col">
+            <h4>Done</h4>
+            {doneTasks &&
+              doneTasks.map((item) => {
+                return (
+                  <div
+                    className="card mb-1"
+                    style={{ width: "18rem" }}
+                    key={item.id}
+                  >
+                    <div className="card-header">
+                      <span
+                        className="tm-link"
+                        role="button"
+                        onClick={() => goToDetail(item.id)}
+                      >
+                        {item.id}
+                      </span>
+                    </div>
+                    <div>
+                      <p>{item.title}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
         </div>
-        <div className="col tm-col">
-          <h4>In Progress</h4>
-          {inProgressTasks &&
-            inProgressTasks.map((item) => {
-              return (
-                <div
-                  className="card mb-1"
-                  style={{ width: "18rem" }}
-                  key={item.id}
-                >
-                  <div className="card-header">
-                    <span
-                      className="tm-link"
-                      role="button"
-                      onClick={() => goToDetail(item.id)}
-                    >
-                      {item.id}
-                    </span>
-                  </div>
-                  <div>
-                    <p>{item.title}</p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-        <div className="col tm-col">
-          <h4>In Review</h4>
-          {inReviewTasks &&
-            inReviewTasks.map((item) => {
-              return (
-                <div
-                  className="card mb-1"
-                  style={{ width: "18rem" }}
-                  key={item.id}
-                >
-                  <div className="card-header">
-                    <span
-                      className="tm-link"
-                      role="button"
-                      onClick={() => goToDetail(item.id)}
-                    >
-                      {item.id}
-                    </span>
-                  </div>
-                  <div>
-                    <p>{item.title}</p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-        <div className="col tm-col">
-          <h4>Done</h4>
-          {doneTasks &&
-            doneTasks.map((item) => {
-              return (
-                <div
-                  className="card mb-1"
-                  style={{ width: "18rem" }}
-                  key={item.id}
-                >
-                  <div className="card-header">
-                    <span
-                      className="tm-link"
-                      role="button"
-                      onClick={() => goToDetail(item.id)}
-                    >
-                      {item.id}
-                    </span>
-                  </div>
-                  <div>
-                    <p>{item.title}</p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
+      </DragDropContext>
     </div>
   );
 };
