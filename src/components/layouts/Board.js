@@ -134,58 +134,110 @@ export const Board = (props) => {
               </div>
             )}
           </Droppable>
-          <div className="col tm-col">
-            <h4>In Review</h4>
-            {inReviewTasks &&
-              inReviewTasks.map((item) => {
-                return (
-                  <div
-                    className="card mb-1"
-                    style={{ width: "18rem" }}
-                    key={item.id}
-                  >
-                    <div className="card-header">
-                      <span
-                        className="tm-link"
-                        role="button"
-                        onClick={() => goToDetail(item.id)}
+          <Droppable droppableId="inReview">
+            {(provided, snapshot) => (
+              <div
+                className="col tm-col"
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                <h4>In Review</h4>
+                {inReviewTasks &&
+                  inReviewTasks.map((item, index) => {
+                    return (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
                       >
-                        {item.id}
-                      </span>
-                    </div>
-                    <div>
-                      <p>{item.title}</p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-          <div className="col tm-col">
-            <h4>Done</h4>
-            {doneTasks &&
-              doneTasks.map((item) => {
-                return (
-                  <div
-                    className="card mb-1"
-                    style={{ width: "18rem" }}
-                    key={item.id}
-                  >
-                    <div className="card-header">
-                      <span
-                        className="tm-link"
-                        role="button"
-                        onClick={() => goToDetail(item.id)}
+                        {(provided, snapshot) => (
+                          <div
+                            className="card mb-1"
+                            style={{
+                              width: "18rem",
+                              ...getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              ),
+                            }}
+                            key={item.id}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="card-header">
+                              <span
+                                className="tm-link"
+                                role="button"
+                                onClick={() => goToDetail(item.id)}
+                              >
+                                {item.id}
+                              </span>
+                            </div>
+                            <div>
+                              <p>{item.title}</p>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId="done">
+            {(provided, snapshot) => (
+              <div
+                className="col tm-col"
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                <h4>Done</h4>
+                {doneTasks &&
+                  doneTasks.map((item, index) => {
+                    return (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
                       >
-                        {item.id}
-                      </span>
-                    </div>
-                    <div>
-                      <p>{item.title}</p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+                        {(provided, snapshot) => (
+                          <div
+                            className="card mb-1"
+                            style={{
+                              width: "18rem",
+                              ...getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              ),
+                            }}
+                            key={item.id}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="card-header">
+                              <span
+                                className="tm-link"
+                                role="button"
+                                onClick={() => goToDetail(item.id)}
+                              >
+                                {item.id}
+                              </span>
+                            </div>
+                            <div>
+                              <p>{item.title}</p>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
     </div>
