@@ -21,7 +21,6 @@ export const Board = (props) => {
     navigate("/detail/" + id);
   };
   const handleDragEnd = (data) => {
-    console.log("datatat", data);
     const taskObj = getTaskFromId(data.draggableId, props.tmObj);
     const newStatus = data.destination.droppableId;
     dispatch(changeTaskStatus(taskObj, newStatus));
