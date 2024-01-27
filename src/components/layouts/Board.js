@@ -70,7 +70,7 @@ export const Board = (props) => {
                               </span>
                             </div>
                             <div>
-                              <p>{item.title}</p>
+                              <p className="title-ellipsis3">{item.title}</p>
                             </div>
                           </div>
                         )}
@@ -122,7 +122,7 @@ export const Board = (props) => {
                               </span>
                             </div>
                             <div>
-                              <p>{item.title}</p>
+                              <p className="title-ellipsis3">{item.title}</p>
                             </div>
                           </div>
                         )}
@@ -174,7 +174,7 @@ export const Board = (props) => {
                               </span>
                             </div>
                             <div>
-                              <p>{item.title}</p>
+                              <p className="title-ellipsis3">{item.title}</p>
                             </div>
                           </div>
                         )}
@@ -226,7 +226,7 @@ export const Board = (props) => {
                               </span>
                             </div>
                             <div>
-                              <p>{item.title}</p>
+                              <p className="title-ellipsis3">{item.title}</p>
                             </div>
                           </div>
                         )}

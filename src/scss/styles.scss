@@ -146,3 +146,25 @@
   max-width: 400px;
   max-height: 300px;
 }
+
+// .ck-link-form {
+//   z-index: 44000 !important;
+// }
+/*
+ * Configure the z-index of the editor UI, so when inside a Bootstrap
+ * modal, it will be rendered over the modal.
+ */
+:root {
+  --ck-z-default: 100;
+  --ck-z-panel: calc(var(--ck-z-default) + 999);
+}
+
+.title-ellipsis3 {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-align: justify;
+  padding: 3px;
+}

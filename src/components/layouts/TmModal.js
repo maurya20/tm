@@ -5,6 +5,10 @@ export const TmModal = (props) => {
   const [content, setContent] = useState(props.previousValue);
   useEffect(() => {
     setContent(props.previousValue);
+    setTimeout(() => {
+      var modalEl = document.getElementById("staticBackdrop");
+      console.log("??????", modalEl);
+    }, 260);
   }, [props.previousValue]);
   return (
     <main>
@@ -14,9 +18,9 @@ export const TmModal = (props) => {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
+        data-bs-focus="false"
       >
         <div className="modal-dialog">
           <div className="modal-content">
