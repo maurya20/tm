@@ -1,6 +1,7 @@
 export class TMAlert {
   static showAlert(type, message) {
     const wrapper = document.createElement("div");
+    wrapper.id = "tm-alert";
     wrapper.classList.add(
       "tmalert",
       "shadow-lg",
@@ -18,6 +19,18 @@ export class TMAlert {
     const root = document.getElementById("root");
     if (root) {
       root.appendChild(wrapper);
+    }
+    setTimeout(() => {
+      const activeTmAlert = document.getElementById("tm-alert");
+      if (activeTmAlert) {
+        activeTmAlert.remove();
+      }
+    }, 4000);
+  }
+  static hideAlert() {
+    const wrapper = document.getElementById("tm-alert");
+    if (wrapper) {
+      wrapper.remove();
     }
   }
 }
