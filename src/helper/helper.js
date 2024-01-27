@@ -183,19 +183,16 @@ export function deleteTaskInCategory(task, oldState) {
     const index = state.blTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
       state.blTasks.splice(index, 1);
-      return state;
     }
   } else if (task.status == "toDo") {
     const index = state.toDoTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
       state.toDoTasks.splice(index, 1);
-      return state;
     }
   } else if (task.status == "done") {
     const index = state.doneTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
       state.doneTasks.splice(index, 1);
-      return state;
     }
   } else if (task.status == "inPg") {
     const index = state.inProgressTasks.findIndex((t) => t.id == task.id);
@@ -206,17 +203,14 @@ export function deleteTaskInCategory(task, oldState) {
     const index = state.inReviewTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
       state.inReviewTasks.splice(index, 1);
-      return state;
     }
   } else if (task.status == "archived") {
     const index = state.archivedTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
       state.archivedTasks.splice(index, 1);
-      return state;
     }
-  } else {
-    return state;
   }
+  return state;
 }
 
 export const grid = 8;

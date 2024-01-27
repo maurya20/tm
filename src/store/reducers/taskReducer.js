@@ -38,7 +38,8 @@ export const taskReducer = (state = defaultTmObj, action) => {
         ...editedState,
       };
     case DELETE_TASK:
-      const stateAfterDeletion = deleteTaskInCategory(payload, state);
+      let oldState = JSON.parse(JSON.stringify(state));
+      const stateAfterDeletion = deleteTaskInCategory(payload, oldState);
       return {
         ...stateAfterDeletion,
       };
