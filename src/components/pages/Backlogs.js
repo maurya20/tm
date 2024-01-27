@@ -13,6 +13,7 @@ export const Backlogs = ({ blTasks }) => {
           <thead>
             <tr>
               <th scope="col">SL. No.</th>
+              <th scope="col">Task Id</th>
               <th scope="col">Title</th>
             </tr>
           </thead>
@@ -26,8 +27,11 @@ export const Backlogs = ({ blTasks }) => {
                   data-bs-toggle="tooltip"
                   title="Task details"
                 >
-                  <th scope="row">{index + 1}</th>
-                  <td>{task.title}</td>
+                  <td scope="row" className="w-5">
+                    {index + 1}
+                  </td>
+                  <td className="tm-link w-20">{task.id}</td>
+                  <td className="w-75">{task.title}</td>
                 </tr>
               );
             })}
