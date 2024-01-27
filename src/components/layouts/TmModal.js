@@ -5,10 +5,6 @@ export const TmModal = (props) => {
   const [content, setContent] = useState(props.previousValue);
   useEffect(() => {
     setContent(props.previousValue);
-    setTimeout(() => {
-      var modalEl = document.getElementById("staticBackdrop");
-      console.log("??????", modalEl);
-    }, 260);
   }, [props.previousValue]);
   return (
     <main>

@@ -123,6 +123,7 @@ export const Detail = (props) => {
         <div>
           <div className="edit-option-div m-2 p-1">
             <h3>{taskObj?.title}</h3>
+            {!taskObj?.title && <p>Title</p>}
             <TmModal
               opened={modalOpened}
               modalFor={modalFor}
@@ -144,6 +145,7 @@ export const Detail = (props) => {
         </div>
         <div className="edit-option-div m-2 p-1">
           <div dangerouslySetInnerHTML={{ __html: taskObj?.description }}></div>
+          {!taskObj?.description && <p>Description</p>}
           <TmModal
             opened={modalOpened}
             modalFor={modalFor}
@@ -164,7 +166,7 @@ export const Detail = (props) => {
         </div>
         <div>
           <div className="edit-option-div m-2 p-1">
-            <h5>Signature</h5>
+            <h6>Signature</h6>
             <img className="sig-img" alt="signature" src={taskObj?.sign} />
             <i
               className="bi bi-pencil-fill ms-5 edit-icon"
