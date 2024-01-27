@@ -6,6 +6,7 @@ import { getNextTaskId } from "../../helper/helper";
 import { useLoader } from "../../hooks/useLoader";
 import { LoaderService } from "../../services/loader";
 import { backlog } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 export const CreateTask = (props) => {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ export const CreateTask = (props) => {
   );
   const tm = useSelector((state) => state.tm);
   const { showLoader, hideLoader } = useLoader();
-
+  const navigate = useNavigate();
   const emitEditorVal = (val) => {
     setDescription(val);
   };
@@ -32,6 +33,9 @@ export const CreateTask = (props) => {
     setTitle("");
     setDescription("");
     setEditorDefautVal("");
+    setTimeout(() => {
+      navigate("/detail/" + newTask.id);
+    }, 500);
   };
   return (
     <div className="editor">
