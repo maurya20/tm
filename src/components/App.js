@@ -8,6 +8,7 @@ import { CreateTask } from "./pages/CreateTask";
 import { Backlogs } from "./pages/Backlogs";
 import { Detail } from "./pages/Detail";
 import { Archived } from "./pages/Archived";
+import ErrorBoundary from "../containers/ErrorBoundry";
 
 class App extends Component {
   options = ["One", "Two", "Three", "Four", "Five"];
@@ -16,6 +17,7 @@ class App extends Component {
     this.state = {
       stepArr: [],
       currentComponent: "home",
+      hasError: false,
     };
   }
   componentDidMount() {
@@ -39,28 +41,30 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Header />}>
-            <Route path="/" element={<Home tmObj={this.props.tm} />} />
-            <Route
-              path="/backlogs"
-              element={<Backlogs blTasks={this.props.tm?.blTasks} />}
-            />
-            <Route path="create" element={<CreateTask />} />
-            <Route
-              path="detail/:taskId"
-              element={<Detail tmObj={this.props.tm} />}
-            />
-            <Route
-              path="/archived"
-              element={
-                <Archived archivedTasks={this.props.tm?.archivedTasks} />
-              }
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Header />}>
+              <Route path="/" element={<Home tmObj={this.props.tm} />} />
+              <Route
+                path="/backlogs"
+                element={<Backlogs blTasks={this.props.tm?.blTasks} />}
+              />
+              <Route path="create" element={<CreateTask />} />
+              <Route
+                path="detail/:taskId"
+                element={<Detail tmObj={this.props.tm} />}
+              />
+              <Route
+                path="/archived"
+                element={
+                  <Archived archivedTasks={this.props.tm?.archivedTasks} />
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ErrorBoundary>
     );
   }
 }

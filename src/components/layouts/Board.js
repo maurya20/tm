@@ -21,9 +21,16 @@ export const Board = (props) => {
     navigate("/detail/" + id);
   };
   const handleDragEnd = (data) => {
-    const taskObj = getTaskFromId(data.draggableId, props.tmObj);
-    const newStatus = data.destination.droppableId;
-    dispatch(changeTaskStatus(taskObj, newStatus));
+    if (
+      data &&
+      data.draggableId &&
+      data.destination &&
+      data.destination.droppableId
+    ) {
+      const taskObj = getTaskFromId(data.draggableId, props.tmObj);
+      const newStatus = data.destination.droppableId;
+      dispatch(changeTaskStatus(taskObj, newStatus));
+    }
   };
   return (
     <div className="container text-center">
