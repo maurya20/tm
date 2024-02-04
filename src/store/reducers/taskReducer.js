@@ -4,12 +4,14 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   GET_TASKS,
+  RE_ORDER_TASKS,
   UPDATE_TASK,
 } from "../actions/actionTypes";
 import {
   addIntoNewStatusCategory,
   deleteTaskInCategory,
   editTaskInCategory,
+  getNewOrderedState,
 } from "../../helper/helper";
 
 export const taskReducer = (state = defaultTmObj, action) => {
@@ -42,6 +44,17 @@ export const taskReducer = (state = defaultTmObj, action) => {
       const stateAfterDeletion = deleteTaskInCategory(payload, oldState);
       return {
         ...stateAfterDeletion,
+      };
+    case RE_ORDER_TASKS:
+      let stateBeforeSort = JSON.parse(JSON.stringify(state));
+      const stateAfterSort = getNewOrderedState(
+        payload.fromIndex,
+        payload.toIndex,
+        stateBeforeSort,
+        payload.status
+      );
+      return {
+        ...stateAfterSort,
       };
     default:
       return state;

@@ -1,9 +1,17 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { getListStyle, getItemStyle, getTaskFromId } from "../../helper/helper";
+import {
+  getListStyle,
+  getItemStyle,
+  getTaskFromId,
+  arraymove,
+} from "../../helper/helper";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus } from "../../store/actions/taskActions";
+import {
+  changeTaskStatus,
+  reorderTasks,
+} from "../../store/actions/taskActions";
 
 export const Board = (props) => {
   const {
@@ -27,9 +35,16 @@ export const Board = (props) => {
       data.destination &&
       data.destination.droppableId
     ) {
-      const taskObj = getTaskFromId(data.draggableId, props.tmObj);
+      const oldStatus = data.source.droppableId;
       const newStatus = data.destination.droppableId;
-      dispatch(changeTaskStatus(taskObj, newStatus));
+      if (newStatus === oldStatus) {
+        dispatch(
+          reorderTasks(data.source.index, data.destination.index, newStatus)
+        );
+      } else {
+        const taskObj = getTaskFromId(data.draggableId, props.tmObj);
+        dispatch(changeTaskStatus(taskObj, newStatus));
+      }
     }
   };
   return (

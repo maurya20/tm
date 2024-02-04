@@ -175,10 +175,34 @@ export function editTaskInCategory(updatedTask, oldState) {
   }
 }
 
+/**
+ * Reorder tasks in a specific status category
+ */
+export function getNewOrderedState(fromIndex, toIndex, oldState, status) {
+  let state = { ...oldState };
+  if (status == "bklg") {
+    state.blTasks = arraymove(state.blTasks, fromIndex, toIndex);
+  } else if (status == "toDo") {
+    state.toDoTasks = arraymove(state.toDoTasks, fromIndex, toIndex);
+  } else if (status == "done") {
+    state.doneTasks = arraymove(state.doneTasks, fromIndex, toIndex);
+  } else if (status == "inPg") {
+    state.inProgressTasks = arraymove(
+      state.inProgressTasks,
+      fromIndex,
+      toIndex
+    );
+  } else if (status == "inReview") {
+    state.inReviewTasks = arraymove(state.inReviewTasks, fromIndex, toIndex);
+  } else if (status == "archived") {
+    state.archivedTasks = arraymove(state.archivedTasks, fromIndex, toIndex);
+  }
+  return state;
+}
+
 ///delete helper
 export function deleteTaskInCategory(task, oldState) {
   let state = { ...oldState };
-  console.log("?????", state);
   if (task.status == "bklg") {
     const index = state.blTasks.findIndex((t) => t.id == task.id);
     if (index > -1) {
@@ -234,3 +258,10 @@ export const getItemStyle = (isDragging, draggableStyle) => ({
   // styles we need to apply on draggables
   ...draggableStyle,
 });
+
+export function arraymove(arr, fromIndex, toIndex) {
+  var element = arr[fromIndex];
+  arr.splice(fromIndex, 1);
+  arr.splice(toIndex, 0, element);
+  return arr;
+}

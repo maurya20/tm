@@ -132,6 +132,16 @@
 
 .sig-clear-btn {
   font-size: xx-large;
+  transition: all 0.75s 0.25s;
+  cursor: pointer;
+}
+
+.sig-toggle-down {
+  transform: rotate(0deg);
+}
+
+.sig-toggle-up {
+  transform: rotate(360deg);
 }
 
 .sig-btns-wrap {

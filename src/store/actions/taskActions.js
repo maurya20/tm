@@ -6,6 +6,7 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   GET_TASKS,
+  RE_ORDER_TASKS,
   UPDATE_TASK,
 } from "./actionTypes";
 
@@ -52,3 +53,11 @@ export const deleteTask = (task) => async (dispatch) => {
     TMAlert.showAlert("success", "Task deleted successfully.");
   }, 2000);
 };
+
+export const reorderTasks =
+  (fromIndex, toIndex, status) => async (dispatch) => {
+    dispatch({
+      type: RE_ORDER_TASKS,
+      payload: { fromIndex: fromIndex, toIndex: toIndex, status: status },
+    });
+  };

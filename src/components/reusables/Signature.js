@@ -8,11 +8,22 @@ export const Signature = (props) => {
     setSignature(sigRef.current.toDataURL());
   };
   const clearSignature = () => {
+    toggleSig();
     sigRef.current.clear();
     setSignature(null);
   };
 
   useEffect(() => {}, [signature]);
+  function toggleSig() {
+    let upClass = "sig-toggle-up";
+    let downClass = "sig-toggle-down";
+    let square = document.querySelector(".sig-clear-btn");
+    if (~square.className.indexOf(downClass)) {
+      square.className = square.className.replace(downClass, upClass);
+    } else {
+      square.className = square.className.replace(upClass, downClass);
+    }
+  }
   return (
     <div className="sig-wrapper">
       {/* <h5 className="text-center">Signature</h5> */}
@@ -25,7 +36,7 @@ export const Signature = (props) => {
       />
       <div className="sig-btns-wrap">
         <i
-          className="bi bi-arrow-clockwise sig-clear-btn"
+          className="bi bi-arrow-clockwise sig-clear-btn sig-toggle-down"
           onClick={clearSignature}
         ></i>
         <button
