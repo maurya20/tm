@@ -72,7 +72,9 @@ export const Detail = (props) => {
       }
     });
   };
-
+  useState(() => {
+    console.log("first effect constructor>>>>>", taskId, taskObj);
+  });
   return (
     <>
       {!taskObj ? (
