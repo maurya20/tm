@@ -8,6 +8,7 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/",
   },
+  mode: "production",
   plugins: [
     new HTMLWebpackPlugin({
       template: "./src/index.html",
