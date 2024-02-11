@@ -58,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <ErrorBoundary>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route element={<Header />}>
               <Route path="/" element={<Home tmObj={this.props.tm} />} />
