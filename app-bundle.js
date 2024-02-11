@@ -1,0 +1,1 @@
+window.appObj=window.appObj||{},appObj.makeXhrCall=function(e,n){var t=new XMLHttpRequest;t.onreadystatechange=function(){if(t.readyState==XMLHttpRequest.DONE)return n(null,t.responseText)},t.open("GET",e,!0),t.send(null)};
