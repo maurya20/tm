@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as bootstrap from "bootstrap";
 import { connect } from "react-redux";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Header } from "./layouts/Header";
 import { CreateTask } from "./pages/CreateTask";
@@ -58,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <ErrorBoundary>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route element={<Header />}>
               <Route path="/" element={<Home tmObj={this.props.tm} />} />
@@ -79,7 +79,7 @@ class App extends Component {
               />
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ErrorBoundary>
     );
   }

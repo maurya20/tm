@@ -1,12 +1,13 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: "./src/developer.js",
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "/build"),
     filename: "bundle.js",
-    publicPath: "/",
+    publicPath: "/tm/",
   },
   mode: "production",
   plugins: [
@@ -18,6 +19,7 @@ module.exports = {
         { from: "src/script/default-script.js", to: "./app-bundle.js" },
       ],
     }),
+    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
@@ -37,25 +39,27 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: () => [require("autoprefixer")],
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-          },
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        // use: [
+
+        //   {
+        //     loader: "style-loader",
+        //   },
+        //   {
+        //     loader: "css-loader",
+        //   },
+        //   {
+        //     loader: "postcss-loader",
+        //     options: {
+        //       postcssOptions: {
+        //         plugins: () => [require("autoprefixer")],
+        //       },
+        //     },
+        //   },
+        //   {
+        //     loader: "sass-loader",
+        //   },
+        // ],
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
