@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/build"),
     filename: "tm/bundle.js",
-    publicPath: "/tm",
+    publicPath: "/",
   },
   mode: "production",
   plugins: [
